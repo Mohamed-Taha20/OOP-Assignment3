@@ -10,40 +10,40 @@
 using namespace std;
 // Set the board
 X_O_Board::X_O_Board () {
-   n_rows = n_cols = 3;
-   board = new char*[n_rows];
-   for (int i = 0; i < n_rows; i++) {
-      board [i] = new char[n_cols];
-      for (int j = 0; j < n_cols; j++)
-         board[i][j] = 0;
-   }
+    n_rows = n_cols = 3;
+    board = new char*[n_rows];
+    for (int i = 0; i < n_rows; i++) {
+        board [i] = new char[n_cols];
+        for (int j = 0; j < n_cols; j++)
+            board[i][j] = 0;
+    }
 }
 
 // Return true  if move is valid and put it on board
 // within board boundaries in empty cell
 // Return false otherwise
 bool X_O_Board::update_board (int x, int y, char mark){
-   // Only update if move is valid
-   if (!(x < 0 || x > 2 || y < 0 || y > 2) && (board[x][y] == 0)) {
-      board[x][y] = toupper(mark);
-      n_moves++;
-      return true;
-   }
-   else
-      return false;
+    // Only update if move is valid
+    if (!(x < 0 || x > 2 || y < 0 || y > 2) && (board[x][y] == 0)) {
+        board[x][y] = toupper(mark);
+        n_moves++;
+        return true;
+    }
+    else
+        return false;
 }
 
 // Display the board and the pieces on it
 void X_O_Board::display_board() {
-   for (int i: {0,1,2}) {
-      cout << "\n| ";
-      for (int j: {0,1,2}) {
-         cout << "(" << i << "," << j << ")";
-         cout << setw(2) << board [i][j] << " |";
-      }
-      cout << "\n-----------------------------";
-   }
-   cout << endl;
+    for (int i: {0,1,2}) {
+        cout << "\n| ";
+        for (int j: {0,1,2}) {
+            cout << "(" << i << "," << j << ")";
+            cout << setw(2) << board [i][j] << " |";
+        }
+        cout << "\n-----------------------------";
+    }
+    cout << endl;
 }
 
 // Returns true if there is any winner
@@ -61,11 +61,11 @@ bool X_O_Board::is_winner() {
     for (int i:{0,1,2}) {
         if ( (row_win[i] && (row_win[i] == board[i][0])) ||
              (col_win[i] && (col_win[i] == board[0][i])) )
-            {return true;}
+        {return true;}
     }
     if ((diag_win[0] && diag_win[0] == board[1][1]) ||
         (diag_win[1] && diag_win[1] == board[1][1]))
-        {return true;}
+    {return true;}
     return false;
 }
 
@@ -113,7 +113,8 @@ void X_O_Board5x5::display_board() {
     }
     cout << endl;
 }
-
+int X_O_Board5x5::player1=0;
+int X_O_Board5x5::player2=0;
 bool X_O_Board5x5::is_winner(){
     if(n_moves == 24){
         for (int i = 0; i < 5; ++i) {
@@ -153,11 +154,9 @@ bool X_O_Board5x5::is_winner(){
             }
         }
         if(player1 == player2){
-            cout << player1 << " " << player2;
             return false;
         }
         else{
-            cout << player1 << " "<< player2;
             return true;
         }
     }
@@ -213,6 +212,13 @@ bool X_O_Board5x5::is_draw(){
 
 bool X_O_Board5x5::game_is_over(){
     return (n_moves >= 24);
+}
+
+bool X_O_Board5x5::player1_winner() {
+    if(player1 > player2){
+        return true;
+    }
+    return false;
 }
 
 /////////////////////////////////////////////////////////
