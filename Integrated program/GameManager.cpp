@@ -61,3 +61,30 @@ void GameManager::run_connect() {
     }
 }
 
+void GameManager::run5x5(){
+    int x, y;
+
+    boardPtr->display_board();
+
+    while (!boardPtr->game_is_over()) {
+        for (int i:{0,1}) {
+            players[i]->get_move_5x5(x, y);
+            while (!boardPtr->update_board (x, y, players[i]->get_symbol())){
+                players[i]->get_move_5x5(x, y);
+            }
+            boardPtr->display_board();
+            if (boardPtr->is_winner()){
+                if(X_O_Board5x5::player1_winner()){
+                    cout << players[0]->to_string() << " " << "wins\n";
+                }
+                else{
+                    cout << players[1]->to_string() << " " << "wins\n";
+                }
+            }
+            if (boardPtr->is_draw()){
+                cout << "Draw!\n";
+                return;
+            }
+        }
+    }
+}
