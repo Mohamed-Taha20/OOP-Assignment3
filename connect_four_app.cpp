@@ -23,11 +23,11 @@ public:
     // Return true if game is over
     virtual bool game_is_over() = 0;
 };
-class Four_in_row_board : public Board
+class Connect_four_board : public Board
 {
 protected:
 public:
-    Four_in_row_board();
+    Connect_four_board();
     bool update_board(int x, int y, char mark);
     bool is_winner();
     bool is_draw();
@@ -148,7 +148,7 @@ X_O_Board::X_O_Board()
             board[i][j] = 0;
     }
 }
-Four_in_row_board::Four_in_row_board()
+Connect_four_board::Connect_four_board()
 {
     n_rows = 6;
     n_cols = 7;
@@ -175,7 +175,7 @@ bool X_O_Board::update_board(int x, int y, char mark)
     else
         return false;
 }
-bool Four_in_row_board::update_board(int x, int y, char mark)
+bool Connect_four_board::update_board(int x, int y, char mark)
 {
     x = 0;
     if (!(y < 0 || y > 7) && (board[0][y] == ' '))
@@ -209,7 +209,7 @@ void X_O_Board::display_board()
     }
     cout << endl;
 }
-void Four_in_row_board::display_board()
+void Connect_four_board::display_board()
 {
     cout << "\n";
     for (int i = 0; i < 7; ++i)
@@ -258,7 +258,7 @@ bool X_O_Board::is_winner()
     }
     return false;
 }
-bool Four_in_row_board::is_winner()
+bool Connect_four_board::is_winner()
 {
     // Check horizontally for four consecutive marks
     for (int row = 0; row < 6; ++row)
@@ -323,7 +323,7 @@ bool X_O_Board::is_draw()
 {
     return (n_moves == 9 && !is_winner());
 }
-bool Four_in_row_board::is_draw()
+bool Connect_four_board::is_draw()
 {
     return (n_moves == 42 && !is_winner());
 }
@@ -331,7 +331,7 @@ bool X_O_Board::game_is_over()
 {
     return n_moves >= 9;
 }
-bool Four_in_row_board::game_is_over()
+bool Connect_four_board::game_is_over()
 {
     return n_moves >= 42;
 }
@@ -396,8 +396,8 @@ int main()
         players[1] = new Player(2, 'o');
     else
         // Player pointer points to child
-        players[1] = new RandomPlayer('o', 3);
-    GameManager x_o_game(new Four_in_row_board(), players);
+        players[1] = new RandomPlayer('o', 7);
+    GameManager x_o_game(new Connect_four_board(), players);
     x_o_game.run();
     system("pause");
 }
