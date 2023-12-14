@@ -6,8 +6,8 @@ using namespace std;
 
 int main()
 {
+    system("cls");
     int choice;
-
     while (true)
     {
         cout << "\nChoose a game to play:\n";
