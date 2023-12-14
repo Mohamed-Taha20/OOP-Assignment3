@@ -8,6 +8,7 @@
 using namespace std;
 
 int main() {
+    system("cls");
     int choice;
     string game;
     Player* players[2];
