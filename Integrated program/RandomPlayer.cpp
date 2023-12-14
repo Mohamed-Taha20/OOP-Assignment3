@@ -28,3 +28,8 @@ void RandomPlayer::get_move_connect (int& x, int& y) {
     x = (int) (rand()/(RAND_MAX + 1.0) * dimension);
     y = (int) (rand()/(RAND_MAX + 1.0) * dimension);
 }
+
+void RandomPlayer::get_move_5x5 (int& x, int& y) {
+    x = (int) (rand()/(RAND_MAX + 1.0) * dimension);
+    y = (int) (rand()/(RAND_MAX + 1.0) * dimension);
+}
