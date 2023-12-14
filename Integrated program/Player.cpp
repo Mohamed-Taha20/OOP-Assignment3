@@ -37,6 +37,10 @@ void Player::get_move_connect(int &x, int &y)
     cout << "\nPlease enter your move  y separated by spaces: ";
     cin >> y;
 }
+void Player::get_move_5x5(int &x, int &y) {
+    cout << "\nPlease enter your move x and y (0 to 4) separated by spaces: ";
+    cin >> x >> y;
+}
 
 
 // Give player info as a string
